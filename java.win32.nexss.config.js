@@ -1,7 +1,7 @@
 let languageConfig = Object.assign({}, require("../config.win32"));
-languageConfig.title = "PHP";
+languageConfig.title = "Java";
 languageConfig.description =
-  "PHP is a popular general-purpose scripting language that is especially suited to web development. Fast, flexible and pragmatic, PHP powers everything from your blog to the most popular websites in the world.";
+  "Java is a programming language and computing platform first released by Sun Microsystems in 1995.";
 languageConfig.url = "https://www.java.com/";
 languageConfig.extensions = [".java"];
 languageConfig.builders = {};
