@@ -10,7 +10,7 @@ languageConfig.compilers = {
     install: "scoop install java maven",
     // Cpp does not have possibility to compile and run on the fly. We need to save it as a exe file first.
     command: "javac",
-    args: "-d java/ <file> & java java/<fileNoExt>",
+    args: "<file> & java <fileNoExt>",
     help: ``
   }
 };
