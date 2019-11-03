@@ -1,4 +1,4 @@
 module.exports = {
   "Could not find or load main class (.*?)":
-    "Please make sure className is the same as <module> and starts with uppercase letter."
+    "Please make sure class name is the same as filename and starts with uppercase letter."
 };

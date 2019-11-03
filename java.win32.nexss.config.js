@@ -7,7 +7,7 @@ languageConfig.extensions = [".java"];
 languageConfig.builders = {};
 languageConfig.compilers = {
   java: {
-    install: "scoop install java maven",
+    install: "scoop bucket add java && scoop install openjdk14 maven",
     // Cpp does not have possibility to compile and run on the fly. We need to save it as a exe file first.
     command: "javac",
     args: "<file> & java <fileNoExt>",
@@ -23,23 +23,28 @@ languageConfig.languagePackageManagers = {
     search: "mvn search",
     install: "mvn require",
     uninstall: "mvn remove",
+    package: "mvn package",
+    compile: "mvn compile",
     help: "mvn",
     version: "mvn version",
     init: () => {
       if (
         !require("fs").existsSync(
-          require("path").join(process.cwd(), "package.json")
+          require("path").join(process.cwd(), "pom.xml")
         )
       ) {
-        require("child_process").execSync("npm init -y", { stdio: "inherit" });
-        console.log("initialized npm project.");
+        require("child_process").execSync(
+          "mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false",
+          { stdio: "inherit" }
+        );
+        console.log("initialized java/maven project.");
       } else {
-        console.log("npm already initialized.");
+        console.log("Maven already initialized.");
       }
     },
     // if command not found in specification
     // run directly on package manager
-    else: "composer <default> <args>"
+    else: "mvn <default> <args>"
   }
 };
 
