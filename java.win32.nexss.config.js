@@ -10,7 +10,7 @@ languageConfig.compilers = {
     install: "scoop bucket add java && scoop install openjdk14 maven",
     // Cpp does not have possibility to compile and run on the fly. We need to save it as a exe file first.
     command: "javac",
-    args: "<file> & java <fileNoExt>",
+    args: `<file> -Xlint:unchecked -cp .;lib/*;src/lib/* & java -cp .;lib/*;src/lib/* <fileNoExt>`,
     help: ``
   }
 };
@@ -19,7 +19,7 @@ languageConfig.languagePackageManagers = {
   mvn: {
     installation: "scoop install maven",
     messageAfterInstallation: "",
-    installed: "mvn installed ",
+    installed: "mvn installed",
     search: "mvn search",
     install: "mvn require",
     uninstall: "mvn remove",
@@ -33,10 +33,13 @@ languageConfig.languagePackageManagers = {
           require("path").join(process.cwd(), "pom.xml")
         )
       ) {
-        require("child_process").execSync(
-          "mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false",
-          { stdio: "inherit" }
-        );
+        try {
+          require("child_process").execSync(
+            "rm -rf my-app && mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false && mv my-app/src/* ./src && rm -rf my-app/src && mv my-app/* . && rm -rf mv-app",
+            { stdio: "inherit" }
+          );
+        } catch (error) {}
+
         console.log("initialized java/maven project.");
       } else {
         console.log("Maven already initialized.");
@@ -44,7 +47,7 @@ languageConfig.languagePackageManagers = {
     },
     // if command not found in specification
     // run directly on package manager
-    else: "mvn <default> <args>"
+    else: "mvn"
   }
 };
 

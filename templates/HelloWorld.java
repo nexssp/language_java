@@ -1,4 +1,3 @@
-
 // Nexss PROGRAMMER 2.0.0 - Java
 // Default template for JSON Data
 // STDIN
@@ -9,7 +8,6 @@ import org.json.JSONObject;
 // import org.json.JSONArray;
 // import java.util.Arrays;
 // import java.util.Collections;
-
 
 // IMPORTANT NOTE:
 // class name must be exacly the same as file name. Below we have Main class so file MUST BE Main.class
