@@ -13,18 +13,14 @@ import org.json.JSONObject;
 
 // IMPORTANT NOTE:
 // class name must be exacly the same as file name. Below we have Main class so file MUST BE Main.class
-public class HelloWorld {
+public class Default {
     public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
         while(scanner.hasNext())
         {
             String NexssStdin = scanner.nextLine();
             JSONObject NexssStdout = new JSONObject(NexssStdin);         
-            // String cwd = (String) json.get("cwd"); // To get Values
-            NexssStdout.put("HelloFromJava", Runtime.class.getPackage().getImplementationVersion());
-            
-            // NexssStdout.put("collection", new JSONArray(Arrays.asList(1, "Test array", 
-            //     Collections.singletonMap("subarray", 12345))));
+            NexssStdout.put("test", "test");
             
             System.out.println(NexssStdout);
         }
