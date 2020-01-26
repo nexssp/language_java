@@ -6,8 +6,14 @@ languageConfig.url = "https://www.java.com/";
 languageConfig.extensions = [".java"];
 languageConfig.builders = {};
 languageConfig.compilers = {
-  java: {
-    install: "scoop bucket add java && scoop install openjdk15 maven",
+  java8: {
+    install: "scoop bucket add java && scoop install adopt8-hotspot maven",
+    command: "javac",
+    args: `<file> -Xlint:unchecked -cp .;lib/*;src/lib/* & java -Dfile.encoding="UTF-8" -cp .;lib/*;src/lib/* <fileNoExt>`,
+    help: ``
+  },
+  java13: {
+    install: "scoop bucket add java && scoop install openjdk13 maven",
     command: "javac",
     args: `<file> -Xlint:unchecked -cp .;lib/*;src/lib/* & java -cp .;lib/*;src/lib/* <fileNoExt>`,
     help: ``
