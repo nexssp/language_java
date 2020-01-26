@@ -7,8 +7,7 @@ languageConfig.extensions = [".java"];
 languageConfig.builders = {};
 languageConfig.compilers = {
   java: {
-    install: "scoop bucket add java && scoop install openjdk14 maven",
-    // Cpp does not have possibility to compile and run on the fly. We need to save it as a exe file first.
+    install: "scoop bucket add java && scoop install openjdk15 maven",
     command: "javac",
     args: `<file> -Xlint:unchecked -cp .;lib/*;src/lib/* & java -cp .;lib/*;src/lib/* <fileNoExt>`,
     help: ``
