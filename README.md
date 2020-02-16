@@ -4,6 +4,13 @@ Nexss Programmer don't need Java to run. Please check the LICENSE at java.com <h
 
 To Install Nexss Programmer please go to [Nexss Programmer CLI](https://github.com/nexssp/cli#readme) for more information.
 
+## Change different compiler versions
+
+```sh
+nexss java default compiler java8 # Version 8
+nexss java default compiler java13 # Version 13
+```
+
 ## CLASSPATH
 
 Nexss Programmer 2.0 has **CLASSPATH** specified to the current folder lib/ .If you would like to include some jar files please make **lib** folder in your project and put your external libraries there. For example, nexss programmer uses **json-20190722.jar** file which allow to parse and make json format and file is copied during adding HelloWorld.java and Default.java Nexss Programmer templates.
