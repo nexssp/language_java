@@ -2,7 +2,10 @@ let languageConfig = Object.assign({}, require("../config.win32"));
 languageConfig.title = "Java";
 languageConfig.description =
   "Java is a programming language and computing platform first released by Sun Microsystems in 1995.";
-languageConfig.url = "https://www.java.com/";
+languageConfig.url = "https://www.java.com";
+languageConfig.founders = ["James Gosling"];
+languageConfig.developers = ["Oracle"];
+languageConfig.years = ["1995"];
 languageConfig.extensions = [".java"];
 languageConfig.builders = {};
 languageConfig.compilers = {
