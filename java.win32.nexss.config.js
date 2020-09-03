@@ -1,4 +1,7 @@
-let languageConfig = Object.assign({}, require("../config.win32"));
+let languageConfig = Object.assign(
+  {},
+  require(`../config.${process.platform}`)
+);
 languageConfig.title = "Java";
 languageConfig.description =
   "Java is a programming language and computing platform first released by Sun Microsystems in 1995.";
@@ -13,14 +16,14 @@ languageConfig.compilers = {
     install: "scoop bucket add java && scoop install adopt8-hotspot maven",
     command: "javac",
     args: `<file> -Xlint:unchecked -cp .;lib/*;src/lib/* & java -Dfile.encoding="UTF-8" -cp .;lib/*;src/lib/* <fileNoExt>`,
-    help: ``
+    help: ``,
   },
   java13: {
     install: "scoop bucket add java && scoop install openjdk13 maven",
     command: "javac",
     args: `<file> -Xlint:unchecked -cp .;lib/*;src/lib/* & java -cp .;lib/*;src/lib/* <fileNoExt>`,
-    help: ``
-  }
+    help: ``,
+  },
 };
 languageConfig.errors = require("./nexss.java.errors");
 languageConfig.languagePackageManagers = {
@@ -55,8 +58,8 @@ languageConfig.languagePackageManagers = {
     },
     // if command not found in specification
     // run directly on package manager
-    else: "mvn"
-  }
+    else: "mvn",
+  },
 };
 
 module.exports = languageConfig;

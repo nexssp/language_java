@@ -1,7 +1,4 @@
-let languageConfig = Object.assign(
-  {},
-  require(`../config.${process.platform}`)
-);
+let languageConfig = Object.assign({}, require(`./java.win32.nexss.config`));
 
 languageConfig.compilers = {
   java8: {
