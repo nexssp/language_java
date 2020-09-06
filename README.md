@@ -18,6 +18,14 @@ Nexss Programmer 2.0 has **CLASSPATH** specified to the current folder lib/ .If 
 [What is CLASSPATH](<https://en.wikipedia.org/wiki/Classpath_(Java)>)
 [5 ways to add multiple JAR in to Classpath in Java](https://javarevisited.blogspot.com/2012/10/5-ways-to-add-multiple-jar-to-classpath-java.html)
 
+## Usefull commands 
+
+```sh
+java -version # check jre version
+javac -version # check which compiler
+java -XshowSettings:properties -version
+```
+
 ## Links
 
 <https://www.baeldung.com/java-org-json>  
