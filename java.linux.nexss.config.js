@@ -13,34 +13,42 @@ languageConfig.compilers = {
   java8: {
     install: `${sudo}apt install openjdk-8-jdk`,
     command: "javac",
-    args: `<file> -Xlint:unchecked -cp .;lib/*;src/lib/* & java -Dfile.encoding="UTF-8" -cp .;lib/*;src/lib/* <fileNoExt>`,
+    args: `<file> -Xlint:unchecked -cp '.:lib/*:src/lib/*' && java -Dfile.encoding=UTF-8 -cp '.:./lib/*:src/lib/*' <fileNoExt>`,
     help: ``,
   },
   java13: {
     install: `${sudo}apt install openjdk-13-jdk`,
     command: "javac",
-    args: `<file> -Xlint:unchecked -cp .;lib/*;src/lib/* & java -cp .;lib/*;src/lib/* <fileNoExt>`,
+    args: `<file> -Xlint:unchecked -cp './:lib/*:src/lib/*' && java -cp '.:lib/*:src/lib/*' <fileNoExt>`,
     help: ``,
   },
 };
 
 switch (distName) {
+  case os.distros.ALPINE:
+    languageConfig.compilers.java8.install = `${sudo}apk add openjdk8
+JAVA_HOME=/usr/lib/jvm/java-1.8-openjdk
+PATH = "$JAVA_HOME/bin:\${PATH}
+${sudo}ln -sf /usr/lib/jvm/java-1.8-openjdk/bin/javac /usr/bin/javac`;
+    break;
   case os.distros.DEBIAN:
-    languageConfig.compilers.java8.install = "apt install -y openjdk-11-jdk";
+    languageConfig.compilers.java8.install = `${sudo}apt install -y openjdk-11-jdk`;
     break;
   case os.distros.CENTOS:
   case os.distros.FEDORA:
     languageConfig.compilers.java8.install = os.replacePMByDistro(
-      "apt-get install -y java"
+      `${sudo}apt-get install -y java`
     );
     break;
   case os.distros.ARCH:
-    languageConfig.compilers.java8.install =
-      "pacman -S --noconfirm jre-openjdk jdk-openjdk"; // error: package org.json does not exist
+    languageConfig.compilers.java8.install = `${sudo}pacman -S --noconfirm jre-openjdk jdk-openjdk`; // error: package org.json does not exist
     break;
   default:
     languageConfig.compilers.java8.install = os.replacePMByDistro(
       languageConfig.compilers.java8.install
+    );
+    languageConfig.compilers.java13.install = os.replacePMByDistro(
+      languageConfig.compilers.java13.install
     );
     break;
 }
