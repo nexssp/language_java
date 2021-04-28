@@ -2,10 +2,10 @@ let languageConfig = Object.assign({}, require(`./java.win32.nexss.config`));
 
 // const os = require("@nexssp/os")
 // Load os from Nexss CLI path (it can be changed if needed)
-const os = require(`${process.env.NEXSS_SRC_PATH}/node_modules/@nexssp/os/`);
-const sudo = os.sudo();
 
-const distName = os.name();
+const sudo = process.sudo;
+
+const distName = process.distro;
 
 languageConfig.dist = distName;
 
@@ -25,29 +25,36 @@ languageConfig.compilers = {
 };
 
 switch (distName) {
-  case os.distros.ALPINE:
+  case process.distros.ORACLE:
+    languageConfig.compilers.java8.install = `${sudo}yum install -y java-1.8.0-openjdk java-devel`;
+    break;
+  case process.distros.AMAZON:
+  case process.distros.AMAZONAMI:
+    languageConfig.compilers.java8.install = `${sudo}yum install -y java-1.8.0-openjdk java-devel`;
+    break;
+  case process.distros.ALPINE: // add java-devel??
     languageConfig.compilers.java8.install = `${sudo}apk add openjdk8
 JAVA_HOME=/usr/lib/jvm/java-1.8-openjdk
-PATH = "$JAVA_HOME/bin:\${PATH}
+PATH = "$JAVA_HOME/bin:\${PATH}"
 ${sudo}ln -sf /usr/lib/jvm/java-1.8-openjdk/bin/javac /usr/bin/javac`;
     break;
-  case os.distros.DEBIAN:
+  case process.distros.DEBIAN:
     languageConfig.compilers.java8.install = `${sudo}apt install -y openjdk-11-jdk`;
     break;
-  case os.distros.CENTOS:
-  case os.distros.FEDORA:
-    languageConfig.compilers.java8.install = os.replacePMByDistro(
-      `${sudo}apt-get install -y java`
+  case process.distros.CENTOS:
+  case process.distros.FEDORA:
+    languageConfig.compilers.java8.install = process.replacePMByDistro(
+      `${sudo}apt-get install -y java java-devel`
     );
     break;
-  case os.distros.ARCH:
+  case process.distros.ARCH:
     languageConfig.compilers.java8.install = `${sudo}pacman -S --noconfirm jre-openjdk jdk-openjdk`; // error: package org.json does not exist
     break;
   default:
-    languageConfig.compilers.java8.install = os.replacePMByDistro(
+    languageConfig.compilers.java8.install = process.replacePMByDistro(
       languageConfig.compilers.java8.install
     );
-    languageConfig.compilers.java13.install = os.replacePMByDistro(
+    languageConfig.compilers.java13.install = process.replacePMByDistro(
       languageConfig.compilers.java13.install
     );
     break;
