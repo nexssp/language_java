@@ -1,9 +1,9 @@
 const config = {
-  files: ["lib/json-20200518.jar"],
+  files: ["lib/json-20210307.jar"],
   commands: [],
-  repos: ["	https://github.com/douglascrockford/JSON-java"],
+  repos: ["https://github.com/stleary/JSON-java"],
   descriptions: [
-    "To see the license please go to: 	https://github.com/douglascrockford/JSON-java/blob/master/LICENSE",
+    "To see the license please go to: https://github.com/stleary/JSON-java/blob/master/LICENSE",
   ],
 };
 
