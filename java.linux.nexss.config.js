@@ -1,10 +1,6 @@
 let languageConfig = Object.assign({}, require(`./java.win32.nexss.config`));
 
-// const os = require("@nexssp/os")
-// Load os from Nexss CLI path (it can be changed if needed)
-
 const sudo = process.sudo;
-
 const distName = process.distro;
 
 languageConfig.dist = distName;
