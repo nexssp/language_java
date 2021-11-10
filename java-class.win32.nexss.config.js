@@ -9,20 +9,20 @@ languageConfig.url = "https://www.java.com";
 languageConfig.founders = ["James Gosling"];
 languageConfig.developers = ["Oracle"];
 languageConfig.years = ["1995"];
-languageConfig.extensions = [".java"];
+languageConfig.extensions = [".class"];
 languageConfig.builders = {};
 languageConfig.compilers = {
   java8: {
     install: "scoop bucket add java && scoop install adopt8-hotspot maven",
-    command: "javac",
+    command: "java",
     // for dev helper with ' args: `<file> -Xlint:unchecked -cp '.;lib/*;src/lib/*' & java -D'file.encoding="UTF-8"' -cp '.;lib/*;src/lib/*' <fileNoExt>`,
-    args: `<file> -Xlint:unchecked -cp .;lib/*;src/lib/* & java -Dfile.encoding="UTF-8" -cp .;lib/*;src/lib/* <fileNoExt>`,
+    args: `-Dfile.encoding="UTF-8" -cp .;lib/*;src/lib/* <fileNoExt>`,
     help: ``,
   },
   java13: {
     install: "scoop bucket add java && scoop install openjdk13 maven",
-    command: "javac",
-    args: `<file> -Xlint:unchecked -cp .;lib/*;src/lib/* & java -cp .;lib/*;src/lib/* <fileNoExt>`,
+    command: "java",
+    args: `-cp .;lib/*;src/lib/* <fileNoExt>`,
     help: ``,
   },
 };
